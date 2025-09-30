@@ -48,7 +48,22 @@ export class ContentGenerator {
       
       case 'esg':
         return this.generateESGContent(data);
-      
+
+      case 'costs':
+        return this.generateCostsContent(data);
+
+      case 'geographic':
+        return this.generateGeographicContent(data);
+
+      case 'fixed_income':
+        return this.generateFixedIncomeContent(data);
+
+      case 'alternatives':
+        return this.generateAlternativesContent(data);
+
+      case 'tax':
+        return this.generateTaxContent(data);
+
       default:
         return {
           paragraph: answer.content
@@ -349,6 +364,214 @@ export class ContentGenerator {
         { category: "Environmental", portfolio: data.environmentalScore, benchmark: 6.0 },
         { category: "Social", portfolio: data.socialScore, benchmark: 6.1 },
         { category: "Governance", portfolio: data.governanceScore, benchmark: 6.5 }
+      ]
+    };
+  }
+
+  private static generateCostsContent(data: any): GeneratedContent {
+    return {
+      kpis: [
+        {
+          label: "Avg Expense Ratio",
+          value: `${data.avgExpenseRatio}%`,
+          change: `vs ${data.industryAverage}% industry`,
+          isPositive: data.avgExpenseRatio < data.industryAverage
+        },
+        {
+          label: "Annual Fees",
+          value: `$${(data.totalAnnualFees / 1000).toFixed(1)}K`,
+          change: "Total cost",
+          isPositive: data.totalAnnualFees < 10000
+        },
+        {
+          label: "Index Funds",
+          value: `${data.indexAllocation}%`,
+          change: `${data.indexFundRatio}% avg fee`,
+          isPositive: true
+        },
+        {
+          label: "Active Funds",
+          value: `${data.activeAllocation}%`,
+          change: `${data.activeFundRatio}% avg fee`,
+          isPositive: data.activeFundRatio < 1
+        }
+      ],
+      tableData: data.costBreakdown?.map((item: any) => ({
+        type: item.type,
+        allocation: `${item.allocation}%`,
+        avgFee: `${item.avgFee}%`,
+        totalCost: `$${item.totalCost.toLocaleString()}`,
+        isPositive: item.avgFee < 0.5
+      }))
+    };
+  }
+
+  private static generateGeographicContent(data: any): GeneratedContent {
+    return {
+      kpis: [
+        {
+          label: "US Exposure",
+          value: `${data.usExposure}%`,
+          change: "Domestic equity",
+          isPositive: true
+        },
+        {
+          label: "Developed Intl",
+          value: `${data.developedIntl}%`,
+          change: "International",
+          isPositive: true
+        },
+        {
+          label: "Emerging Markets",
+          value: `${data.emergingMarkets}%`,
+          change: "Growth exposure",
+          isPositive: true
+        },
+        {
+          label: "Currency Hedged",
+          value: `${data.currencyHedged}%`,
+          change: "FX protection",
+          isPositive: data.currencyHedged > 50
+        }
+      ],
+      tableData: data.topIntlHoldings?.map((holding: any) => ({
+        name: holding.name,
+        country: holding.country,
+        weight: `${holding.weight}%`,
+        sector: holding.sector,
+        isPositive: true
+      })),
+      highlights: [
+        `European holdings: ${data.europeanHoldings}% of portfolio`,
+        `Asia-Pacific exposure: ${data.asiaPacific}%`,
+        `Currency hedging on ${data.currencyHedged}% of international positions`
+      ]
+    };
+  }
+
+  private static generateFixedIncomeContent(data: any): GeneratedContent {
+    return {
+      kpis: [
+        {
+          label: "Fixed Income",
+          value: `${data.fixedIncomeAllocation}%`,
+          change: "of portfolio",
+          isPositive: true
+        },
+        {
+          label: "Duration",
+          value: `${data.duration}y`,
+          change: "Interest rate risk",
+          isPositive: data.duration < 7
+        },
+        {
+          label: "Current Yield",
+          value: `${data.currentYield}%`,
+          change: `$${(data.annualIncome / 1000).toFixed(1)}K annual`,
+          isPositive: data.currentYield > 4
+        },
+        {
+          label: "Credit Quality",
+          value: data.averageCredit,
+          change: "High quality",
+          isPositive: true
+        }
+      ],
+      tableData: data.maturityLadder?.map((item: any) => ({
+        year: item.year,
+        allocation: `${item.allocation}%`,
+        yield: `${item.yield}%`,
+        isPositive: item.yield > 4
+      })),
+      highlights: [
+        `Government bonds: ${data.governmentBonds}% of fixed income`,
+        `Corporate IG: ${data.corporateIG}%, High Yield: ${data.highYield}%`,
+        `Laddered maturities from 2025 to 2034`
+      ]
+    };
+  }
+
+  private static generateAlternativesContent(data: any): GeneratedContent {
+    return {
+      kpis: [
+        {
+          label: "Total Alternatives",
+          value: `${data.totalAlternatives}%`,
+          change: "of portfolio",
+          isPositive: true
+        },
+        {
+          label: "REITs",
+          value: `${data.reitAllocation}%`,
+          change: `+${data.reitReturn}% YTD`,
+          isPositive: data.reitReturn > 0
+        },
+        {
+          label: "Commodities",
+          value: `${data.commoditiesAllocation}%`,
+          change: "Inflation hedge",
+          isPositive: true
+        },
+        {
+          label: "Private Equity",
+          value: `${data.privateEquityAllocation}%`,
+          change: "Growth exposure",
+          isPositive: true
+        }
+      ],
+      tableData: data.alternativeBreakdown?.map((item: any) => ({
+        type: item.type,
+        allocation: `${item.allocation}%`,
+        return: `${item.return > 0 ? '+' : ''}${item.return}%`,
+        income: `${item.income}%`,
+        isPositive: item.return > 0
+      })),
+      highlights: [
+        `Alternatives contributed +${data.performanceContribution}% to portfolio performance`,
+        `Real estate exposure provides inflation protection`,
+        `Diversification benefits from low correlation assets`
+      ]
+    };
+  }
+
+  private static generateTaxContent(data: any): GeneratedContent {
+    return {
+      kpis: [
+        {
+          label: "Tax-Advantaged",
+          value: `${data.taxAdvantaged}%`,
+          change: "IRA/401k holdings",
+          isPositive: data.taxAdvantaged > 50
+        },
+        {
+          label: "Effective Tax Rate",
+          value: `${data.effectiveTaxRate}%`,
+          change: `vs ${data.marginalTaxRate}% marginal`,
+          isPositive: data.effectiveTaxRate < data.marginalTaxRate
+        },
+        {
+          label: "Tax-Loss Harvesting",
+          value: `$${(data.taxLossHarvesting / 1000).toFixed(1)}K`,
+          change: "Realized losses",
+          isPositive: data.taxLossHarvesting > 0
+        },
+        {
+          label: "Muni Income",
+          value: `$${(data.municipalIncome / 1000).toFixed(1)}K`,
+          change: "Tax-free annually",
+          isPositive: true
+        }
+      ],
+      tableData: data.accountTypes?.map((account: any) => ({
+        type: account.type,
+        allocation: `${account.allocation}%`,
+        strategy: account.strategy,
+        isPositive: true
+      })),
+      highlights: [
+        `Effective tax rate ${data.marginalTaxRate - data.effectiveTaxRate}% below marginal rate`,
+        `Strategic asset location optimizes tax efficiency`,
+        `Tax-loss harvesting generated $${data.taxLossHarvesting.toLocaleString()} in deductions`
       ]
     };
   }
