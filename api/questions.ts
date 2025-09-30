@@ -34,7 +34,7 @@ const mockAnswers = [
     title: "YTD Performance vs S&P 500",
     content: "Your portfolio has delivered exceptional performance year-to-date, achieving a +14.7% return compared to the S&P 500's +11.2% return. This represents a significant 3.5 percentage point outperformance, driven primarily by strategic overweights in technology (+28.3%) and healthcare (+19.6%) sectors. The portfolio's risk-adjusted returns demonstrate superior efficiency with a Sharpe ratio of 1.34 versus the benchmark's 1.12, indicating better return per unit of risk taken.",
     category: "Performance",
-    keywords: ["ytd", "performance", "s&p", "sp", "500", "benchmark", "comparison", "return", "outperform"],
+    keywords: ["ytd", "performance", "s&p", "sp", "500", "benchmark", "comparison", "return", "outperform", "year", "to", "date", "vs", "versus", "compared"],
     answerType: "performance",
     data: {
       portfolioReturn: 14.7,
@@ -60,7 +60,7 @@ const mockAnswers = [
     title: "Top 10 Holdings Analysis",
     content: "Your portfolio's largest positions represent 43.2% of total assets, providing strong concentration in high-conviction investments while maintaining diversification. Microsoft (4.8%) leads as your top holding, followed by Apple (4.2%) and NVIDIA (3.9%). The weighted average P/E ratio of your top 10 holdings is 24.3x, reflecting a quality growth orientation. These positions have contributed +2.8% to overall portfolio performance this year.",
     category: "Holdings",
-    keywords: ["top", "holdings", "weight", "positions", "largest", "biggest", "concentration", "diversification"],
+    keywords: ["top", "holdings", "weight", "positions", "largest", "biggest", "concentration", "diversification", "10", "ten", "show", "major"],
     answerType: "holdings",
     data: {
       topHoldings: [
@@ -105,7 +105,7 @@ const mockAnswers = [
     title: "Sector Allocation Strategy",
     content: "Your portfolio maintains a strategic sector allocation designed to capitalize on secular growth trends while providing defensive characteristics. Technology leads at 28.3% (vs S&P 500: 22.1%), reflecting conviction in digital transformation themes. Healthcare at 15.2% and Financials at 14.8% provide balance, while Consumer Discretionary (12.4%) captures economic reopening themes. The allocation generated +1.9% of excess return through sector selection this year.",
     category: "Allocation",
-    keywords: ["sector", "allocation", "breakdown", "diversification", "strategy", "weight"],
+    keywords: ["sector", "allocation", "breakdown", "diversification", "strategy", "weight", "by", "industry", "industries", "split"],
     answerType: "allocation",
     data: {
       sectors: [
@@ -217,7 +217,7 @@ const mockAnswers = [
     title: "Geographic Diversification",
     content: "Your portfolio exhibits strong international diversification with 72% US equity exposure, 18% developed international markets, and 10% emerging markets allocation. European holdings (12%) are led by strong positions in ASML and Nestlé, while Asia-Pacific exposure (14%) includes Taiwan Semiconductor and Samsung. Currency hedging covers 60% of international positions, reducing volatility while maintaining global growth exposure.",
     category: "Geographic",
-    keywords: ["geographic", "international", "global", "region", "country", "foreign", "domestic", "us", "europe", "asia"],
+    keywords: ["geographic", "international", "global", "region", "country", "foreign", "domestic", "us", "europe", "asia", "regional", "geographical", "worldwide"],
     answerType: "geographic",
     data: {
       usExposure: 72,
@@ -322,6 +322,212 @@ const mockAnswers = [
         { metric: "Downside Deviation", portfolio: 9.8, benchmark: 13.7, advantage: "Lower" },
         { metric: "Up Capture", portfolio: 94, benchmark: 100, advantage: "Slightly Lower" },
         { metric: "Down Capture", portfolio: 78, benchmark: 100, advantage: "Much Better" }
+      ]
+    }
+  },
+  {
+    id: "factor-attribution",
+    title: "Factor-Based Attribution Analysis",
+    content: "Your portfolio's returns can be attributed to multiple factor exposures. Quality and Growth factors contributed +3.2% and +2.8% respectively, while the Momentum factor added +1.9%. Size factor exposure is neutral with minimal impact. Factor-based analysis reveals that 68% of returns are explained by intentional factor tilts, while 32% represents true alpha from security selection. The portfolio's quality bias has particularly benefited performance during market uncertainty.",
+    category: "Performance",
+    keywords: ["factor", "attribution", "analysis", "quality", "growth", "momentum", "size", "value", "style", "exposure", "tilt"],
+    answerType: "performance",
+    data: {
+      factorContributions: [
+        { factor: "Quality", contribution: 3.2, weight: 0.42, description: "High ROE and stable earnings" },
+        { factor: "Growth", contribution: 2.8, weight: 0.38, description: "Revenue and earnings growth" },
+        { factor: "Momentum", contribution: 1.9, weight: 0.28, description: "Price momentum signals" },
+        { factor: "Value", contribution: -0.4, weight: -0.12, description: "Underweight value stocks" },
+        { factor: "Size", contribution: 0.1, weight: 0.03, description: "Neutral size exposure" },
+        { factor: "Low Volatility", contribution: 1.2, weight: 0.18, description: "Defensive positioning" }
+      ],
+      explainedReturn: 68,
+      alpha: 32,
+      totalAttribution: 8.8
+    }
+  },
+  {
+    id: "sharpe-ratio-analysis",
+    title: "Sharpe Ratio & Risk-Adjusted Returns",
+    content: "Your portfolio's Sharpe ratio of 1.34 significantly exceeds both the S&P 500 (1.12) and the average peer portfolio (0.98), indicating superior risk-adjusted returns. The Sortino ratio of 1.89 shows even stronger performance when focusing on downside risk. Information ratio of 0.67 demonstrates consistent alpha generation relative to tracking error. These metrics confirm efficient capital allocation and effective risk management.",
+    category: "Risk",
+    keywords: ["sharpe", "ratio", "risk-adjusted", "returns", "sortino", "information", "treynor", "calmar", "efficiency"],
+    answerType: "risk",
+    data: {
+      sharpeRatio: 1.34,
+      benchmarkSharpe: 1.12,
+      peerAverageSharpe: 0.98,
+      sortinoRatio: 1.89,
+      informationRatio: 0.67,
+      treynorRatio: 12.8,
+      calmarRatio: 1.79,
+      riskFreeRate: 4.5,
+      excessReturn: 10.2,
+      standardDeviation: 16.4
+    }
+  },
+  {
+    id: "rolling-returns",
+    title: "Rolling Returns Analysis",
+    content: "12-month rolling returns over the past 3 years show consistent outperformance with 89% of periods beating the S&P 500. The portfolio demonstrated resilience during the 2022 downturn with a minimum rolling return of -4.2% vs the market's -12.8%. Best rolling period achieved +24.7% return. Current 12-month return of +14.7% ranks in the 82nd percentile of the trailing 36-month distribution, indicating strong recent momentum.",
+    category: "Performance",
+    keywords: ["rolling", "returns", "12-month", "trailing", "periods", "consistency", "outperformance", "momentum"],
+    answerType: "performance",
+    data: {
+      current12MonthReturn: 14.7,
+      periodsOutperforming: 89,
+      bestRollingPeriod: 24.7,
+      worstRollingPeriod: -4.2,
+      benchmarkWorst: -12.8,
+      percentileRank: 82,
+      rollingReturns: [
+        { endDate: "2024-08", return: 14.7, benchmark: 11.2, excess: 3.5 },
+        { endDate: "2024-05", return: 16.2, benchmark: 12.8, excess: 3.4 },
+        { endDate: "2024-02", return: 12.4, benchmark: 10.1, excess: 2.3 },
+        { endDate: "2023-11", return: 18.3, benchmark: 14.2, excess: 4.1 },
+        { endDate: "2023-08", return: 9.8, benchmark: 8.4, excess: 1.4 }
+      ]
+    }
+  },
+  {
+    id: "value-at-risk",
+    title: "Value at Risk (VaR) Analysis",
+    content: "Portfolio Value at Risk analysis indicates a 95% confidence that daily losses will not exceed -2.1% (approximately $31,500 on current AUM). The 99% VaR stands at -3.4% ($51,000), while Expected Shortfall (CVaR) at 95% confidence is -2.8%. Historical VaR over the past year has been accurate 94.2% of the time. Stress testing against 2008 crisis scenarios suggests maximum potential drawdown of -18.5%, significantly better than the market's -37.0% during that period.",
+    category: "Risk",
+    keywords: ["var", "value", "at", "risk", "cvar", "conditional", "expected", "shortfall", "loss", "stress", "test"],
+    answerType: "risk",
+    data: {
+      var95Daily: -2.1,
+      var95DollarAmount: 31500,
+      var99Daily: -3.4,
+      var99DollarAmount: 51000,
+      cvar95: -2.8,
+      historicalAccuracy: 94.2,
+      stressScenarios: [
+        { scenario: "2008 Financial Crisis", portfolioDrawdown: -18.5, marketDrawdown: -37.0 },
+        { scenario: "2020 COVID Crash", portfolioDrawdown: -14.2, marketDrawdown: -19.4 },
+        { scenario: "Rising Rates +200bps", portfolioDrawdown: -8.7, marketDrawdown: -11.2 },
+        { scenario: "Tech Correction -25%", portfolioDrawdown: -12.3, marketDrawdown: -15.8 }
+      ]
+    }
+  },
+  {
+    id: "performance-contributors",
+    title: "Top Performance Contributors & Detractors",
+    content: "NVIDIA leads performance contribution at +1.34% to portfolio returns, followed by Microsoft (+0.78%) and Apple (+0.51%). Technology sector overall contributed +4.2% to returns. On the downside, Energy positions detracted -0.3% and Communication Services underperformed expectations by -0.6%. Security selection in Technology added +2.1% while sector allocation contributed +1.9%. Active positions (vs benchmark) generated +3.2% of alpha this year.",
+    category: "Performance",
+    keywords: ["contributors", "detractors", "attribution", "top", "worst", "best", "performance", "drivers", "drag"],
+    answerType: "performance",
+    data: {
+      topContributors: [
+        { name: "NVIDIA Corp", symbol: "NVDA", contribution: 1.34, weight: 3.9, return: 34.7 },
+        { name: "Microsoft Corp", symbol: "MSFT", contribution: 0.78, weight: 4.8, return: 16.2 },
+        { name: "Apple Inc", symbol: "AAPL", contribution: 0.51, weight: 4.2, return: 12.4 },
+        { name: "Amazon.com", symbol: "AMZN", contribution: 0.68, weight: 3.6, return: 18.9 },
+        { name: "Alphabet Inc", symbol: "GOOGL", contribution: 0.52, weight: 3.4, return: 15.3 }
+      ],
+      topDetractors: [
+        { name: "AT&T Inc", symbol: "T", contribution: -0.18, weight: 1.2, return: -15.2 },
+        { name: "Chevron Corp", symbol: "CVX", contribution: -0.12, weight: 0.8, return: -14.8 },
+        { name: "Verizon", symbol: "VZ", contribution: -0.14, weight: 1.0, return: -13.7 }
+      ],
+      sectorContribution: 4.2,
+      securitySelection: 2.1,
+      allocationEffect: 1.9,
+      totalAlpha: 3.2
+    }
+  },
+  {
+    id: "asset-allocation",
+    title: "Asset Allocation Overview",
+    content: "Your portfolio maintains a strategic 75% equity / 25% fixed income allocation, with equities split between 68% US stocks, 18% international developed, and 14% emerging markets. Within fixed income, 60% is allocated to government bonds, 35% investment-grade corporate, and 5% high-yield. Alternative investments represent 8% of total portfolio via REITs (4.2%), commodities (2.3%), and private equity (1.5%). This allocation targets 60/40-style returns with enhanced diversification and reduced correlation during market stress.",
+    category: "Allocation",
+    keywords: ["asset", "allocation", "equity", "fixed", "income", "bonds", "stocks", "alternatives", "mix", "strategic"],
+    answerType: "allocation",
+    data: {
+      equityAllocation: 75,
+      fixedIncomeAllocation: 25,
+      equityBreakdown: [
+        { region: "US Stocks", allocation: 68, amount: 1020000 },
+        { region: "International Developed", allocation: 18, amount: 270000 },
+        { region: "Emerging Markets", allocation: 14, amount: 210000 }
+      ],
+      fixedIncomeBreakdown: [
+        { type: "Government Bonds", allocation: 60, amount: 225000 },
+        { type: "Investment Grade Corporate", allocation: 35, amount: 131250 },
+        { type: "High Yield", allocation: 5, amount: 18750 }
+      ],
+      alternatives: 8,
+      targetReturn: 8.5,
+      targetVolatility: 12.5
+    }
+  },
+  {
+    id: "recent-trades",
+    title: "Recent Trading Activity",
+    content: "Over the past 30 days, 12 transactions were executed totaling $485,000 in volume. Notable purchases include $180K NVIDIA position increase, $85K new position in Eli Lilly, and $65K addition to Microsoft. Sales included $95K Tesla reduction, $58K profit-taking in Meta, and $42K trimming of overweight Healthcare positions. Net cash flow was +$38K, maintaining target allocation. All trades were executed within 0.05% of target prices with minimal market impact.",
+    category: "Trading",
+    keywords: ["recent", "trades", "trading", "activity", "transactions", "purchases", "sales", "buys", "sells", "last", "month"],
+    answerType: "trading",
+    data: {
+      totalTransactions: 12,
+      totalVolume: 485000,
+      purchases: [
+        { security: "NVIDIA Corp", symbol: "NVDA", amount: 180000, shares: 375, price: 480.00, date: "2024-08-15" },
+        { security: "Eli Lilly", symbol: "LLY", amount: 85000, shares: 95, price: 894.74, date: "2024-08-12" },
+        { security: "Microsoft Corp", symbol: "MSFT", amount: 65000, shares: 152, price: 427.63, date: "2024-08-08" }
+      ],
+      sales: [
+        { security: "Tesla Inc", symbol: "TSLA", amount: -95000, shares: -425, price: 223.53, date: "2024-07-22" },
+        { security: "Meta Platforms", symbol: "META", amount: -58000, shares: -122, price: 475.41, date: "2024-08-05" },
+        { security: "UnitedHealth", symbol: "UNH", amount: -42000, shares: -78, price: 538.46, date: "2024-08-18" }
+      ],
+      netCashFlow: 38000,
+      avgExecutionQuality: 99.95
+    }
+  },
+  {
+    id: "correlation-analysis",
+    title: "Correlation & Diversification Analysis",
+    content: "Portfolio correlation to the S&P 500 stands at 0.87, indicating strong but not perfect market linkage. International equity correlation is 0.72, providing meaningful diversification benefits. Fixed income maintains negative correlation (-0.18) during equity drawdowns, confirming hedge effectiveness. Intra-portfolio correlations average 0.42, suggesting good diversification. The portfolio's effective number of bets is 18.3, well above the market's typical 8-10, indicating superior risk distribution across uncorrelated sources of return.",
+    category: "Risk",
+    keywords: ["correlation", "diversification", "relationship", "link", "covariance", "independent", "uncorrelated"],
+    answerType: "risk",
+    data: {
+      marketCorrelation: 0.87,
+      internationalCorrelation: 0.72,
+      bondCorrelation: -0.18,
+      avgIntraCorrelation: 0.42,
+      effectiveBets: 18.3,
+      marketEffectiveBets: 9.2,
+      assetClassCorrelations: [
+        { class1: "US Equity", class2: "Intl Equity", correlation: 0.78 },
+        { class1: "US Equity", class2: "Bonds", correlation: -0.18 },
+        { class1: "US Equity", class2: "REITs", correlation: 0.65 },
+        { class1: "Bonds", class2: "Gold", correlation: -0.12 }
+      ]
+    }
+  },
+  {
+    id: "dividend-growth",
+    title: "Dividend Growth Analysis",
+    content: "23 holdings are Dividend Aristocrats with 25+ years of consecutive dividend increases. Your dividend income has grown at a compound annual rate of 9.8% over the past 5 years, outpacing inflation by 6.3%. Microsoft, Johnson & Johnson, and Procter & Gamble lead dividend growth at 10.2%, 6.4%, and 5.8% respectively. Forward-looking dividend growth rate is projected at 8.2% annually, supported by payout ratios averaging 52% and strong free cash flow generation. The portfolio is positioned for sustainable income growth without sacrificing capital appreciation.",
+    category: "Income",
+    keywords: ["dividend", "growth", "aristocrats", "growing", "increase", "raise", "compound", "cagr"],
+    answerType: "dividend",
+    data: {
+      aristocrats: 23,
+      dividendCAGR5yr: 9.8,
+      inflationAdjustedGrowth: 6.3,
+      forwardGrowthRate: 8.2,
+      avgPayoutRatio: 52,
+      sustainabilityScore: 8.4,
+      topGrowthStocks: [
+        { name: "Microsoft", symbol: "MSFT", growthRate: 10.2, payoutRatio: 26, yearsGrowth: 19 },
+        { name: "Apple", symbol: "AAPL", growthRate: 7.8, payoutRatio: 15, yearsGrowth: 12 },
+        { name: "Visa", symbol: "V", growthRate: 18.3, payoutRatio: 23, yearsGrowth: 14 },
+        { name: "Johnson & Johnson", symbol: "JNJ", growthRate: 6.4, payoutRatio: 47, yearsGrowth: 61 },
+        { name: "Procter & Gamble", symbol: "PG", growthRate: 5.8, payoutRatio: 63, yearsGrowth: 67 }
       ]
     }
   }
