@@ -186,58 +186,80 @@ body {
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* ---------- DARK MODE TOKENS (kept + tiny tuning) ---------- */
+/* ---------- DARK MODE TOKENS (Enhanced Financial Terminal Aesthetic) ---------- */
 .dark {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
+  --button-outline: rgba(255,255,255, .12);
+  --badge-outline: rgba(255,255,255, .08);
   --opaque-button-border-intensity: 9;
 
-  --elevate-1: rgba(255,255,255, .03);
-  --elevate-2: rgba(255,255,255, .07);
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(255,255,255, .08);
 
-  --background: 210 25% 11%;
-  --foreground: 0 0% 96%;
-  --border: 210 20% 22%;
-  --card: 210 20% 16%;
-  --card-foreground: 0 0% 96%;
-  --card-border: 210 20% 26%;
-  --sidebar: 210 20% 14%;
-  --sidebar-foreground: 0 0% 96%;
-  --sidebar-border: 210 20% 24%;
-  --sidebar-primary: 210 100% 60%;
+  /* Deeper, richer backgrounds with subtle blue tint */
+  --background: 215 30% 8%;
+  --foreground: 210 20% 98%;
+
+  /* Improved contrast for borders and cards */
+  --border: 215 25% 18%;
+  --card: 215 28% 12%;
+  --card-foreground: 210 20% 98%;
+  --card-border: 215 25% 20%;
+
+  /* Sidebar with professional depth */
+  --sidebar: 215 30% 10%;
+  --sidebar-foreground: 210 20% 98%;
+  --sidebar-border: 215 25% 18%;
+  --sidebar-primary: 210 100% 65%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 210 20% 20%;
-  --sidebar-accent-foreground: 0 0% 92%;
-  --sidebar-ring: 210 100% 60%;
-  --popover: 210 20% 18%;
-  --popover-foreground: 0 0% 96%;
-  --popover-border: 210 20% 28%;
-  --primary: 210 100% 60%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 210 20% 24%;
-  --secondary-foreground: 0 0% 92%;
-  --muted: 210 10% 22%;
-  --muted-foreground: 210 10% 75%;
-  --accent: 210 15% 24%;
-  --accent-foreground: 0 0% 92%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --input: 210 20% 30%;
-  --ring: 210 100% 60%;
-  --chart-1: 210 100% 70%;
-  --chart-2: 142 76% 50%;
-  --chart-3: 0 84% 65%;
-  --chart-4: 45 25% 65%;
-  --chart-5: 270 50% 70%;
+  --sidebar-accent: 215 25% 16%;
+  --sidebar-accent-foreground: 210 15% 95%;
+  --sidebar-ring: 210 100% 65%;
 
-  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  --shadow-xs: 0px 1px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-  --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 2px -1px rgba(0, 0, 0, 0.3);
-  --shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 2px -1px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.5), 0px 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.6), 0px 4px 6px -2px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0px 20px 25px -5px rgba(0, 0, 0, 0.7), 0px 10px 10px -5px rgba(0, 0, 0, 0.5);
-  --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.8);
+  /* Popover with better visibility */
+  --popover: 215 28% 14%;
+  --popover-foreground: 210 20% 98%;
+  --popover-border: 215 25% 22%;
+
+  /* Vibrant primary with excellent contrast */
+  --primary: 210 100% 65%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary with improved readability */
+  --secondary: 215 22% 20%;
+  --secondary-foreground: 210 15% 95%;
+
+  /* Muted with better text contrast */
+  --muted: 215 18% 18%;
+  --muted-foreground: 215 12% 70%;
+
+  /* Accent with subtle distinction */
+  --accent: 215 20% 22%;
+  --accent-foreground: 210 15% 95%;
+
+  /* Destructive with proper intensity */
+  --destructive: 0 72% 58%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Input with clear visual hierarchy */
+  --input: 215 22% 24%;
+  --ring: 210 100% 65%;
+
+  /* Enhanced chart colors for better visibility and aesthetics */
+  --chart-1: 210 100% 68%;      /* Vivid blue */
+  --chart-2: 142 70% 55%;       /* Vibrant green */
+  --chart-3: 0 78% 62%;         /* Clear red */
+  --chart-4: 38 92% 58%;        /* Gold/amber */
+  --chart-5: 270 65% 68%;       /* Purple */
+
+  /* Refined shadows for depth perception */
+  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+  --shadow-xs: 0px 1px 3px 0px rgba(0, 0, 0, 0.5), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.5), 0px 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5), 0px 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.6), 0px 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.7), 0px 4px 6px -2px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0px 20px 25px -5px rgba(0, 0, 0, 0.8), 0px 10px 10px -5px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.85);
 }
 
 @layer base {
