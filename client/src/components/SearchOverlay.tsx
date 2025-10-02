@@ -8,7 +8,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { TrendingUp, PieChart, Shield, Activity, BarChart3, Target, Grid3X3, ArrowLeft, ChevronRight, Search, ChevronDown, Settings, Info, HelpCircle, DollarSign, GitCompare } from "lucide-react";
-import { useTypingAnimation } from "@/hooks/useTypingAnimation";
+// import { useTypingAnimation } from "@/hooks/useTypingAnimation";
 import { TIMEFRAME_OPTIONS, BENCHMARK_OPTIONS, SECTOR_OPTIONS, ACCOUNT_OPTIONS } from "@shared/enhanced-financial-data";
 
 interface SearchOverlayProps {
@@ -688,49 +688,49 @@ const SearchOverlay = memo(function SearchOverlay({
   const [recentlyModifiedQuestion, setRecentlyModifiedQuestion] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Typing animation for placeholder with responsive questions
-  const placeholderQuestions = [
-    "What's my biggest risk exposure?",
-    "Should I rebalance my portfolio?",
-    "Which stocks are underperforming?",
-    "What's my YTD performance vs S&P 500?",
-    "How should I reduce concentration risk?",
-    "What sectors should I consider selling?",
-    "Am I too heavily invested in tech?",
-    "What's driving my recent losses?"
-  ];
+  // Static placeholder text
+  const staticPlaceholder = "Ask a question or select from suggestions below";
 
-  const tabletPlaceholderQuestions = [
-    "Biggest risk exposure?",
-    "Should I rebalance?",
-    "Which stocks underperform?",
-    "YTD performance vs S&P 500?",
-    "Reduce concentration risk?",
-    "Sectors to sell?",
-    "Too heavy in tech?",
-    "Recent losses cause?"
-  ];
-
-  const mobilePlaceholderQuestions = [
-    "Biggest risk?",
-    "Rebalance?",
-    "Underperformers?",
-    "YTD vs S&P?",
-    "Reduce risk?",
-    "Sell sectors?",
-    "Too much tech?",
-    "Loss cause?"
-  ];
-
-  const { displayedText: displayedPlaceholder } = useTypingAnimation({
-    questions: placeholderQuestions,
-    tabletQuestions: tabletPlaceholderQuestions,
-    mobileQuestions: mobilePlaceholderQuestions,
-    isActive: isOpen && !searchValue,
-    typingSpeed: 50,
-    erasingSpeed: 30,
-    pauseDuration: 2000
-  });
+  // Typing animation (commented out - can be re-enabled later)
+  // const placeholderQuestions = [
+  //   "What's my biggest risk exposure?",
+  //   "Should I rebalance my portfolio?",
+  //   "Which stocks are underperforming?",
+  //   "What's my YTD performance vs S&P 500?",
+  //   "How should I reduce concentration risk?",
+  //   "What sectors should I consider selling?",
+  //   "Am I too heavily invested in tech?",
+  //   "What's driving my recent losses?"
+  // ];
+  // const tabletPlaceholderQuestions = [
+  //   "Biggest risk exposure?",
+  //   "Should I rebalance?",
+  //   "Which stocks underperform?",
+  //   "YTD performance vs S&P 500?",
+  //   "Reduce concentration risk?",
+  //   "Sectors to sell?",
+  //   "Too heavy in tech?",
+  //   "Recent losses cause?"
+  // ];
+  // const mobilePlaceholderQuestions = [
+  //   "Biggest risk?",
+  //   "Rebalance?",
+  //   "Underperformers?",
+  //   "YTD vs S&P?",
+  //   "Reduce risk?",
+  //   "Sell sectors?",
+  //   "Too much tech?",
+  //   "Loss cause?"
+  // ];
+  // const { displayedText: displayedPlaceholder } = useTypingAnimation({
+  //   questions: placeholderQuestions,
+  //   tabletQuestions: tabletPlaceholderQuestions,
+  //   mobileQuestions: mobilePlaceholderQuestions,
+  //   isActive: isOpen && !searchValue,
+  //   typingSpeed: 50,
+  //   erasingSpeed: 30,
+  //   pauseDuration: 2000
+  // });
 
 
   // Reset to overview when opening and focus input
@@ -974,8 +974,7 @@ const SearchOverlay = memo(function SearchOverlay({
               {!searchValue && (
                 <div className="absolute inset-0 h-12 flex items-center pointer-events-none">
                   <span className="text-base text-muted-foreground/60 font-normal ml-14">
-                    {displayedPlaceholder}
-                    <span className="animate-pulse ml-1 opacity-70">|</span>
+                    {staticPlaceholder}
                   </span>
                 </div>
               )}
@@ -1159,7 +1158,8 @@ const SearchOverlay = memo(function SearchOverlay({
                           )}
                         </span>
                         <div className="flex items-center gap-1">
-                          {hasPlaceholders(question.text) && (
+                          {/* Customizable pill - commented out, can be re-enabled later */}
+                          {/* {hasPlaceholders(question.text) && (
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
@@ -1173,7 +1173,7 @@ const SearchOverlay = memo(function SearchOverlay({
                                 </TooltipContent>
                               </Tooltip>
                             </TooltipProvider>
-                          )}
+                          )} */}
                           <ChevronRight className="h-3 w-3 text-muted-foreground/60 group-hover:text-primary transition-colors" />
                         </div>
                       </div>
@@ -1273,7 +1273,8 @@ const SearchOverlay = memo(function SearchOverlay({
                               )}
                             </div>
                             <div className="flex items-center gap-1">
-                              {hasPlaceholders(question.text) && (
+                              {/* Interactive pill - commented out, can be re-enabled later */}
+                              {/* {hasPlaceholders(question.text) && (
                                 <TooltipProvider>
                                   <Tooltip>
                                     <TooltipTrigger asChild>
@@ -1287,7 +1288,7 @@ const SearchOverlay = memo(function SearchOverlay({
                                     </TooltipContent>
                                   </Tooltip>
                                 </TooltipProvider>
-                              )}
+                              )} */}
                               <ChevronRight className="h-3 w-3 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
                             </div>
                           </div>
@@ -1524,8 +1525,7 @@ const SearchOverlay = memo(function SearchOverlay({
                 {!searchValue && (
                   <div className="absolute inset-0 h-14 flex items-center pointer-events-none">
                     <span className="text-base text-muted-foreground/60 font-normal ml-10">
-                      {displayedPlaceholder}
-                      <span className="animate-pulse ml-1 opacity-70">|</span>
+                      {staticPlaceholder}
                     </span>
                   </div>
                 )}

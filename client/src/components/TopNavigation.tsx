@@ -1,5 +1,5 @@
 import { useState, useEffect, memo } from 'react'
-import { useTypingAnimation } from '@/hooks/useTypingAnimation'
+// import { useTypingAnimation } from '@/hooks/useTypingAnimation'
 import {
   Search,
   Menu,
@@ -110,49 +110,49 @@ const TopNavigation = memo(function TopNavigation({
   const [isSearchFocused, setIsSearchFocused] = useState(false)
   const [isAccountSelectorOpen, setIsAccountSelectorOpen] = useState(false)
 
-  // Typing animation for search placeholder with responsive questions
-  const placeholderQuestions = [
-    "What's the YTD performance vs S&P 500?",
-    'Show me the top 10 holdings by weight',
-    "What's the portfolio's beta and volatility?",
-    'How is the portfolio allocated by sector?',
-    'What are the biggest risk exposures?',
-    'Which positions had the best performance?',
-    "What's driving current performance attribution?",
-    'Show me recent portfolio activity summary',
-  ]
+  // Static placeholder text
+  const staticPlaceholder = "Ask a question about your portfolio"
 
-  const tabletQuestions = [
-    "YTD performance vs S&P 500?",
-    'Top 10 holdings by weight',
-    "Portfolio beta and volatility?",
-    'Sector allocation breakdown',
-    'Biggest risk exposures?',
-    'Best performing positions?',
-    "Performance attribution?",
-    'Recent portfolio activity',
-  ]
-
-  const mobileQuestions = [
-    "YTD vs S&P 500?",
-    'Top holdings',
-    "Portfolio risk?",
-    'Sector allocation',
-    'Risk exposure?',
-    'Best positions?',
-    "Performance?",
-    'Recent activity',
-  ]
-
-  const { displayedText } = useTypingAnimation({
-    questions: placeholderQuestions,
-    tabletQuestions,
-    mobileQuestions,
-    isActive: !searchValue && !isSearchFocused,
-    typingSpeed: 50,
-    erasingSpeed: 30,
-    pauseDuration: 2000,
-  })
+  // Typing animation (commented out - can be re-enabled later)
+  // const placeholderQuestions = [
+  //   "What's the YTD performance vs S&P 500?",
+  //   'Show me the top 10 holdings by weight',
+  //   "What's the portfolio's beta and volatility?",
+  //   'How is the portfolio allocated by sector?',
+  //   'What are the biggest risk exposures?',
+  //   'Which positions had the best performance?',
+  //   "What's driving current performance attribution?",
+  //   'Show me recent portfolio activity summary',
+  // ]
+  // const tabletQuestions = [
+  //   "YTD performance vs S&P 500?",
+  //   'Top 10 holdings by weight',
+  //   "Portfolio beta and volatility?",
+  //   'Sector allocation breakdown',
+  //   'Biggest risk exposures?',
+  //   'Best performing positions?',
+  //   "Performance attribution?",
+  //   'Recent portfolio activity',
+  // ]
+  // const mobileQuestions = [
+  //   "YTD vs S&P 500?",
+  //   'Top holdings',
+  //   "Portfolio risk?",
+  //   'Sector allocation',
+  //   'Risk exposure?',
+  //   'Best positions?',
+  //   "Performance?",
+  //   'Recent activity',
+  // ]
+  // const { displayedText } = useTypingAnimation({
+  //   questions: placeholderQuestions,
+  //   tabletQuestions,
+  //   mobileQuestions,
+  //   isActive: !searchValue && !isSearchFocused,
+  //   typingSpeed: 50,
+  //   erasingSpeed: 30,
+  //   pauseDuration: 2000,
+  // })
 
   // Local state for pending changes (to prevent API calls on every selection)
   const [pendingSelectionMode, setPendingSelectionMode] =
@@ -355,12 +355,11 @@ const TopNavigation = memo(function TopNavigation({
                 data-testid="input-search"
               />
 
-              {/* Placeholder animation */}
+              {/* Static placeholder */}
               {!searchValue && (
                 <div className="absolute inset-0 pl-12 pr-16 h-10 flex items-center pointer-events-none overflow-hidden">
                   <span className="text-base text-muted-foreground/70 font-normal truncate whitespace-nowrap">
-                    {displayedText}
-                    <span className="animate-pulse ml-1 opacity-70">|</span>
+                    {staticPlaceholder}
                   </span>
                 </div>
               )}
