@@ -1279,7 +1279,11 @@ const SearchOverlay = memo(function SearchOverlay({
                                 <TooltipProvider>
                                   <Tooltip>
                                     <TooltipTrigger asChild>
-                                      <Badge variant="outline" className="text-xs px-2 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors">
+                                      <Badge
+                                        variant="outline"
+                                        className="text-xs px-2 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors"
+                                        onClick={(e) => e.stopPropagation()}
+                                      >
                                         +{question.categories.length - 2}
                                       </Badge>
                                     </TooltipTrigger>
@@ -1441,7 +1445,11 @@ const SearchOverlay = memo(function SearchOverlay({
                               <TooltipProvider>
                                 <Tooltip>
                                   <TooltipTrigger asChild>
-                                    <Badge variant="outline" className="text-xs px-1.5 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors">
+                                    <Badge
+                                      variant="outline"
+                                      className="text-xs px-1.5 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors"
+                                      onClick={(e) => e.stopPropagation()}
+                                    >
                                       +{question.categories.length - 1}
                                     </Badge>
                                   </TooltipTrigger>
@@ -1559,7 +1567,11 @@ const SearchOverlay = memo(function SearchOverlay({
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <Badge variant="outline" className="text-xs px-1.5 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors">
+                                  <Badge
+                                    variant="outline"
+                                    className="text-xs px-1.5 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors"
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
                                     +{question.categories.length - 1}
                                   </Badge>
                                 </TooltipTrigger>
