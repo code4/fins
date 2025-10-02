@@ -665,10 +665,23 @@ const renderInteractiveQuestion = (
   return <span className="inline-flex items-baseline flex-wrap gap-0 group">{parts}</span>;
 };
 
-const recentQueries = [
-  "Portfolio performance last quarter",
-  "Risk metrics compared to benchmark",
-  "Top performing assets YTD"
+// Mock recent queries matching actual questions from the catalog
+const recentQueries: Question[] = [
+  {
+    text: "Show me the top 10 holdings by weight",
+    categories: ["Holdings Analysis"],
+    tags: ["positions", "weight"]
+  },
+  {
+    text: "What's the portfolio's beta and volatility vs S&P 500?",
+    categories: ["Risk Assessment", "Comparison"],
+    tags: ["beta", "volatility"]
+  },
+  {
+    text: "Show dividend income for YTD",
+    categories: ["Income & Dividends"],
+    tags: ["dividends", "income"]
+  }
 ];
 
 const SearchOverlay = memo(function SearchOverlay({ 
@@ -1502,15 +1515,63 @@ const SearchOverlay = memo(function SearchOverlay({
                     <span>Recent Questions</span>
                   </div>
                 }>
-                  {recentQueries.slice(0, 4).map((query, index) => (
+                  {recentQueries.slice(0, 4).map((question, index) => (
                     <CommandItem
                       key={index}
-                      value={query}
-                      onSelect={() => handleQuestionClick(query)}
+                      value={question.text}
+                      onSelect={() => handleQuestionClick(question.text)}
                       className="px-4 py-2.5 hover:bg-accent/30 cursor-pointer transition-all duration-200 rounded-md mx-2 my-0.5 group border-l-2 border-transparent hover:border-muted-foreground/30"
                     >
                       <div className="flex items-center gap-3 w-full">
-                        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors flex-1">{query}</span>
+                        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors flex-1">{question.text}</span>
+                        <div className="flex items-center gap-2 shrink-0">
+                          {question.categories.slice(0, 1).map((categoryName, idx) => {
+                            const categoryInfo = getCategoryInfo(categoryName);
+                            return categoryInfo ? (
+                              <Badge
+                                key={idx}
+                                variant="outline"
+                                className="text-xs px-2 py-1 h-5 gap-1.5 cursor-pointer hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleCategoryClick(categoryName);
+                                }}
+                              >
+                                <div className={`w-1.5 h-1.5 rounded-full ${categoryInfo.color}`} />
+                                {categoryName}
+                              </Badge>
+                            ) : null;
+                          })}
+                          {question.categories.length > 1 && (
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Badge variant="outline" className="text-xs px-1.5 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors">
+                                    +{question.categories.length - 1}
+                                  </Badge>
+                                </TooltipTrigger>
+                                <TooltipContent side="top" className="max-w-56">
+                                  <p className="text-xs font-medium mb-1">Additional Categories</p>
+                                  <div className="space-y-1">
+                                    {question.categories.slice(1).map((category, catIdx) => (
+                                      <button
+                                        key={catIdx}
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          handleCategoryClick(category);
+                                        }}
+                                        className="flex items-center gap-2 w-full text-left px-2 py-1 rounded hover:bg-accent/80 transition-colors"
+                                      >
+                                        <div className={`w-2 h-2 rounded-full ${getCategoryInfo(category)?.color}`} />
+                                        <span className="text-xs">{category}</span>
+                                      </button>
+                                    ))}
+                                  </div>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          )}
+                        </div>
                         <ChevronRight className="h-3 w-3 text-muted-foreground/30 group-hover:text-muted-foreground group-hover:translate-x-0.5 transition-all duration-200" />
                       </div>
                     </CommandItem>
