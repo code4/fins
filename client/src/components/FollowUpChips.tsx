@@ -53,10 +53,33 @@ export default function FollowUpChips({
   
   if (!questions.length) return null;
 
+  // Auto-detect category from question text
+  const detectCategory = (text: string): FollowUpQuestion['category'] => {
+    const lowerText = text.toLowerCase();
+
+    if (lowerText.includes('performance') || lowerText.includes('return') || lowerText.includes('gain') || lowerText.includes('ytd') || lowerText.includes('outperform')) {
+      return 'performance';
+    }
+    if (lowerText.includes('risk') || lowerText.includes('volatility') || lowerText.includes('beta') || lowerText.includes('sharpe')) {
+      return 'risk';
+    }
+    if (lowerText.includes('allocation') || lowerText.includes('sector') || lowerText.includes('diversif')) {
+      return 'allocation';
+    }
+    if (lowerText.includes('cost') || lowerText.includes('fee') || lowerText.includes('expense') || lowerText.includes('dividend') || lowerText.includes('income')) {
+      return 'costs';
+    }
+    if (lowerText.includes('compare') || lowerText.includes('vs') || lowerText.includes('versus') || lowerText.includes('benchmark')) {
+      return 'comparison';
+    }
+    // Default to analysis for holdings, positions, etc.
+    return 'analysis';
+  };
+
   // Normalize questions to FollowUpQuestion objects
-  const normalizedQuestions: FollowUpQuestion[] = questions.map(q => 
-    typeof q === 'string' 
-      ? { text: q, category: 'analysis', priority: 'medium' }
+  const normalizedQuestions: FollowUpQuestion[] = questions.map(q =>
+    typeof q === 'string'
+      ? { text: q, category: detectCategory(q), priority: 'medium' }
       : q
   );
 
