@@ -820,22 +820,22 @@ const renderPerformanceLayout = (content: any) => (
     {content.kpis && (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {content.kpis.slice(0, 4).map((kpi: any, index: number) => (
-          <div 
-            key={index} 
-            className={`rounded-lg p-5 text-center hover-elevate button-smooth group animate-in fade-in-50 slide-in-from-bottom-2 ${
-              index === 0 || index === 1 
-                ? 'bg-gradient-to-br from-chart-2/20 to-chart-2/5 border border-chart-2/20' 
-                : 'bg-muted/50'
+          <div
+            key={index}
+            className={`rounded-lg p-5 text-center animate-in fade-in-50 slide-in-from-bottom-2 ${
+              index === 0 || index === 1
+                ? 'bg-gradient-to-br from-chart-2/20 to-chart-2/5 border border-chart-2/20'
+                : 'bg-muted/50 border border-border/30'
             }`}
             style={{ animationDelay: `${index * 100 + 200}ms` }}
           >
-            <div className={`text-3xl lg:text-4xl font-mono font-bold mb-2 group-hover:scale-110 content-transition ${
+            <div className={`text-3xl lg:text-4xl font-mono font-bold mb-2 ${
               index === 0 || index === 1 ? 'text-chart-2' : ''
             }`} data-testid={`text-kpi-value-${index}`}>
               {kpi.value}
             </div>
             <div className="text-sm text-muted-foreground mb-1 font-medium">{kpi.label}</div>
-            <div className={`text-xs font-medium content-transition ${
+            <div className={`text-xs font-medium ${
               kpi.isPositive ? 'text-chart-2' : 'text-chart-3'
             }`}>
               {kpi.change}
@@ -878,22 +878,22 @@ const renderRiskLayout = (content: any) => (
     {content.kpis && (
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
         {content.kpis.map((kpi: any, index: number) => (
-          <div 
-            key={index} 
-            className={`rounded-lg p-4 text-center hover-elevate button-smooth group animate-in fade-in-50 slide-in-from-bottom-2 ${
-              !kpi.isPositive 
-                ? 'bg-gradient-to-br from-chart-3/20 to-chart-3/5 border border-chart-3/20' 
+          <div
+            key={index}
+            className={`rounded-lg p-4 text-center animate-in fade-in-50 slide-in-from-bottom-2 ${
+              !kpi.isPositive
+                ? 'bg-gradient-to-br from-chart-3/20 to-chart-3/5 border border-chart-3/20'
                 : 'bg-gradient-to-br from-chart-2/20 to-chart-2/5 border border-chart-2/20'
             }`}
             style={{ animationDelay: `${index * 100 + 200}ms` }}
           >
-            <div className={`text-2xl lg:text-3xl font-mono font-bold mb-1 group-hover:scale-110 content-transition ${
+            <div className={`text-2xl lg:text-3xl font-mono font-bold mb-1 ${
               !kpi.isPositive ? 'text-chart-3' : 'text-chart-2'
             }`} data-testid={`text-kpi-value-${index}`}>
               {kpi.value}
             </div>
             <div className="text-xs text-muted-foreground mb-1">{kpi.label}</div>
-            <div className={`text-xs font-medium content-transition ${
+            <div className={`text-xs font-medium ${
               kpi.isPositive ? 'text-chart-2' : 'text-chart-3'
             }`}>
               {kpi.change}
@@ -909,7 +909,7 @@ const renderRiskLayout = (content: any) => (
         <h4 className="text-base font-semibold mb-4 text-foreground">Additional Risk Metrics</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {content.metrics.map((metric: any, index: number) => (
-            <div key={index} className="bg-gradient-to-br from-muted/50 to-muted/20 rounded-lg p-4 hover-elevate button-smooth border border-muted-foreground/10">
+            <div key={index} className="bg-gradient-to-br from-muted/50 to-muted/20 rounded-lg p-4 border border-border/30">
               <div className="text-xl font-mono font-bold mb-1 text-foreground">{metric.value}</div>
               <div className="text-sm font-medium mb-1">{metric.label}</div>
               {metric.subtext && (
@@ -930,16 +930,16 @@ const renderHoldingsLayout = (content: any) => (
     {content.kpis && (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {content.kpis.map((kpi: any, index: number) => (
-          <div 
-            key={index} 
-            className="bg-muted/50 rounded-lg p-4 text-center hover-elevate button-smooth group animate-in fade-in-50 slide-in-from-bottom-2"
+          <div
+            key={index}
+            className="bg-muted/50 border border-border/30 rounded-lg p-4 text-center animate-in fade-in-50 slide-in-from-bottom-2"
             style={{ animationDelay: `${index * 100 + 200}ms` }}
           >
-            <div className="text-2xl font-mono font-bold mb-1 group-hover:scale-110 content-transition" data-testid={`text-kpi-value-${index}`}>
+            <div className="text-2xl font-mono font-bold mb-1" data-testid={`text-kpi-value-${index}`}>
               {kpi.value}
             </div>
             <div className="text-xs text-muted-foreground mb-1">{kpi.label}</div>
-            <div className={`text-xs font-medium content-transition ${
+            <div className={`text-xs font-medium ${
               kpi.isPositive ? 'text-chart-2' : 'text-chart-3'
             }`}>
               {kpi.change}
@@ -983,16 +983,16 @@ const renderAllocationLayout = (content: any) => (
     {content.kpis && (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {content.kpis.map((kpi: any, index: number) => (
-          <div 
-            key={index} 
-            className="bg-muted/50 rounded-lg p-4 text-center hover-elevate button-smooth group animate-in fade-in-50 slide-in-from-bottom-2"
+          <div
+            key={index}
+            className="bg-muted/50 border border-border/30 rounded-lg p-4 text-center animate-in fade-in-50 slide-in-from-bottom-2"
             style={{ animationDelay: `${index * 100 + 200}ms` }}
           >
-            <div className="text-2xl font-mono font-bold mb-1 group-hover:scale-110 content-transition" data-testid={`text-kpi-value-${index}`}>
+            <div className="text-2xl font-mono font-bold mb-1" data-testid={`text-kpi-value-${index}`}>
               {kpi.value}
             </div>
             <div className="text-xs text-muted-foreground mb-1">{kpi.label}</div>
-            <div className={`text-xs font-medium content-transition ${
+            <div className={`text-xs font-medium ${
               kpi.isPositive ? 'text-chart-2' : 'text-chart-3'
             }`}>
               {kpi.change}
@@ -1080,7 +1080,7 @@ const renderGenericLayout = (content: any) => (
         <h4 className="text-sm font-medium mb-3 text-muted-foreground">Additional Metrics</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {content.metrics.map((metric: any, index: number) => (
-            <div key={index} className="bg-muted/50 rounded-lg p-4 hover-elevate button-smooth">
+            <div key={index} className="bg-muted/50 rounded-lg p-4 border border-border/30">
               <div className="text-lg font-mono font-bold mb-1">{metric.value}</div>
               <div className="text-sm font-medium mb-1">{metric.label}</div>
               {metric.subtext && (
