@@ -759,6 +759,18 @@ const SearchOverlay = memo(function SearchOverlay({
     }
   }, [isOpen, externalSelectedCategory]);
 
+  // Reset state when overlay closes
+  useEffect(() => {
+    if (!isOpen) {
+      setMode('overview');
+      setSelectedCategory(null);
+      setSelectedQuestion(null);
+      setPlaceholderValues({});
+      setEditingPlaceholder(null);
+      setRecentlyModifiedQuestion(null);
+    }
+  }, [isOpen]);
+
   // Reset to overview when opening and focus input
   useEffect(() => {
     if (isOpen && !externalSelectedCategory) {

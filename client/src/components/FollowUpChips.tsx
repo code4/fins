@@ -76,11 +76,11 @@ export default function FollowUpChips({
     e.stopPropagation();
     // Map internal categories to SearchOverlay category names
     const categoryMap: Record<FollowUpQuestion['category'], string> = {
-      'performance': 'Performance Insights',
+      'performance': 'Performance Analysis',
       'risk': 'Risk Assessment',
       'allocation': 'Allocation Analysis',
-      'costs': 'Cost Analysis',
-      'analysis': 'Analysis',
+      'costs': 'Income & Dividends',
+      'analysis': 'Holdings Analysis',
       'comparison': 'Comparison'
     };
     onCategoryClick?.(categoryMap[category] || category);
