@@ -1001,7 +1001,7 @@ const SearchOverlay = memo(function SearchOverlay({
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2 px-2 py-1 bg-background rounded-full border border-border/50">
                     <div className="w-2.5 h-2.5 rounded-full bg-primary" />
-                    <Target className="h-4 w-4" />
+                    {/* <Target className="h-4 w-4" /> */}
                     <span className="text-sm font-medium">Configure Question</span>
                   </div>
                 </div>
@@ -1410,14 +1410,16 @@ const SearchOverlay = memo(function SearchOverlay({
                               </Badge>
                             )}
                           </div>
-                          {hasPlaceholders(question.text) ? (
+                          {/* Target icon - commented out, can be re-enabled later */}
+                          {/* {hasPlaceholders(question.text) ? (
                             <div className="flex items-center gap-1">
                               <Target className="h-3 w-3 text-primary/60" />
                               <ChevronRight className="h-3 w-3 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
                             </div>
                           ) : (
                             <ChevronRight className="h-3 w-3 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
-                          )}
+                          )} */}
+                          <ChevronRight className="h-3 w-3 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all duration-200" />
                         </div>
                       </CommandItem>
                     );
