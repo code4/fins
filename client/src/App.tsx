@@ -52,6 +52,7 @@ function FinSightDashboard() {
   } = useSelection();
   const [searchValue, setSearchValue] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   
   // Typing animation for placeholder text
   const placeholderQuestions = [
@@ -481,6 +482,12 @@ function FinSightDashboard() {
     handleSearchSubmit(question);
   };
 
+  const handleCategoryClick = (category: string) => {
+    // Open search overlay and navigate to the category
+    setSelectedCategory(category);
+    setIsSearchFocused(true);
+  };
+
   // Handler to refresh a specific answer with new timestamp and slightly varied data
   const handleRefreshAnswer = useCallback(async (answerId: string) => {
     // Set refreshing state to show loading
@@ -647,13 +654,17 @@ function FinSightDashboard() {
       {/* Search Overlay - positioned outside header to be above backdrop */}
       <div className="fixed top-0 left-0 right-0 z-[70] pointer-events-none">
         <div className="relative max-w-4xl mx-auto px-4 pointer-events-auto">
-          <SearchOverlay 
+          <SearchOverlay
             isOpen={isSearchFocused}
             searchValue={searchValue}
             onSearchChange={setSearchValue}
             onQuestionSelect={handleSearchSubmit}
-            onCategorySelect={(category) => {}}
-            onClose={handleCloseSearch}
+            onCategorySelect={setSelectedCategory}
+            selectedCategory={selectedCategory}
+            onClose={() => {
+              handleCloseSearch();
+              setSelectedCategory(null);
+            }}
           />
         </div>
       </div>
@@ -754,6 +765,7 @@ function FinSightDashboard() {
                       content={answer.content}
                       answerId={answer.matchedAnswer?.id}
                       onFollowUpClick={handleFollowUpClick}
+                      onCategoryClick={handleCategoryClick}
                       onRefresh={() => handleRefreshAnswer(answer.id)}
                       onExport={() => {}}
                       onQuestionSubmit={handleSearchSubmit}

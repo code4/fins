@@ -15,6 +15,7 @@ interface FollowUpQuestion {
 interface FollowUpChipsProps {
   questions?: (string | FollowUpQuestion)[];
   onQuestionClick?: (question: string) => void;
+  onCategoryClick?: (category: string) => void;
   maxVisible?: number;
 }
 
@@ -42,9 +43,10 @@ const getCategoryColor = (category: FollowUpQuestion['category']) => {
   }
 };
 
-export default function FollowUpChips({ 
-  questions = [], 
+export default function FollowUpChips({
+  questions = [],
   onQuestionClick,
+  onCategoryClick,
   maxVisible = 6
 }: FollowUpChipsProps) {
   const [showAll, setShowAll] = useState(false);
@@ -68,6 +70,20 @@ export default function FollowUpChips({
 
   const handleQuestionClick = (question: FollowUpQuestion) => {
     onQuestionClick?.(question.text);
+  };
+
+  const handleCategoryClick = (e: React.MouseEvent, category: FollowUpQuestion['category']) => {
+    e.stopPropagation();
+    // Map internal categories to SearchOverlay category names
+    const categoryMap: Record<FollowUpQuestion['category'], string> = {
+      'performance': 'Performance Insights',
+      'risk': 'Risk Assessment',
+      'allocation': 'Allocation Analysis',
+      'costs': 'Cost Analysis',
+      'analysis': 'Analysis',
+      'comparison': 'Comparison'
+    };
+    onCategoryClick?.(categoryMap[category] || category);
   };
 
   const truncateText = (text: string, maxLength: number) => {
@@ -126,7 +142,11 @@ export default function FollowUpChips({
                         </div>
                       </div>
                       <div className="flex items-center gap-1 shrink-0">
-                        <Badge variant="outline" className="text-xs capitalize">
+                        <Badge
+                          variant="outline"
+                          className="text-xs capitalize cursor-pointer hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
+                          onClick={(e) => handleCategoryClick(e, question.category)}
+                        >
                           {question.category}
                         </Badge>
                         <ChevronRight className="h-3 w-3 text-muted-foreground/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />

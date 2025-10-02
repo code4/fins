@@ -16,6 +16,7 @@ interface SearchOverlayProps {
   searchValue?: string;
   onSearchChange?: (value: string) => void;
   onCategorySelect?: (category: string) => void;
+  selectedCategory?: string | null;
   onQuestionSelect?: (question: string) => void;
   onClose?: () => void;
 }
@@ -684,11 +685,12 @@ const recentQueries: Question[] = [
   }
 ];
 
-const SearchOverlay = memo(function SearchOverlay({ 
+const SearchOverlay = memo(function SearchOverlay({
   isOpen = false,
   searchValue = "",
   onSearchChange,
   onCategorySelect,
+  selectedCategory = null,
   onQuestionSelect,
   onClose
 }: SearchOverlayProps) {
@@ -746,9 +748,20 @@ const SearchOverlay = memo(function SearchOverlay({
   // });
 
 
+  // Handle external category selection (from follow-up questions)
+  useEffect(() => {
+    if (isOpen && selectedCategory) {
+      setMode('category');
+      setSelectedCategory(selectedCategory);
+      setSelectedQuestion(null);
+      setPlaceholderValues({});
+      setEditingPlaceholder(null);
+    }
+  }, [isOpen, selectedCategory]);
+
   // Reset to overview when opening and focus input
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && !selectedCategory) {
       setMode('overview');
       setSelectedCategory(null);
       setSelectedQuestion(null);

@@ -218,6 +218,7 @@ interface AnswerCardProps {
   onRefresh?: () => void;
   onExport?: () => void;
   onFollowUpClick?: (question: string) => void;
+  onCategoryClick?: (category: string) => void;
   onFeedbackSubmit?: (feedback: { type: 'positive' | 'negative', reasoning: string }) => void;
   onAccountsChange?: (newAccounts: string[]) => void;
   onTimeframeChange?: (newTimeframe: string) => void;
@@ -1313,6 +1314,7 @@ const AnswerCard = memo(function AnswerCard({
   onRefresh,
   onExport,
   onFollowUpClick,
+  onCategoryClick,
   onFeedbackSubmit,
   onAccountsChange,
   onTimeframeChange,
@@ -1577,9 +1579,10 @@ const AnswerCard = memo(function AnswerCard({
             {renderSpecializedContent(content)}
 
             {/* Follow-up Questions */}
-            <FollowUpChips 
+            <FollowUpChips
               questions={followUpQuestions}
               onQuestionClick={onFollowUpClick}
+              onCategoryClick={onCategoryClick}
             />
           </>
         )}
