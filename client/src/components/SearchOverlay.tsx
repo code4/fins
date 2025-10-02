@@ -1253,7 +1253,7 @@ const SearchOverlay = memo(function SearchOverlay({
                                 <TooltipProvider>
                                   <Tooltip>
                                     <TooltipTrigger asChild>
-                                      <Badge variant="outline" className="text-xs px-2 py-1 h-5 border-border/50 cursor-help hover:bg-accent/50 transition-colors">
+                                      <Badge variant="outline" className="text-xs px-2 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors">
                                         +{question.categories.length - 2}
                                       </Badge>
                                     </TooltipTrigger>
@@ -1261,10 +1261,17 @@ const SearchOverlay = memo(function SearchOverlay({
                                       <p className="text-xs font-medium mb-1">Additional Categories</p>
                                       <div className="space-y-1">
                                         {question.categories.slice(2).map((category, index) => (
-                                          <div key={index} className="flex items-center gap-2">
+                                          <button
+                                            key={index}
+                                            onClick={(e) => {
+                                              e.stopPropagation();
+                                              handleCategoryClick(category);
+                                            }}
+                                            className="flex items-center gap-2 w-full text-left px-2 py-1 rounded hover:bg-accent/80 transition-colors"
+                                          >
                                             <div className={`w-2 h-2 rounded-full ${getCategoryInfo(category)?.color}`} />
                                             <span className="text-xs">{category}</span>
-                                          </div>
+                                          </button>
                                         ))}
                                       </div>
                                     </TooltipContent>
@@ -1405,9 +1412,33 @@ const SearchOverlay = memo(function SearchOverlay({
                               ) : null;
                             })}
                             {question.categories.length > 1 && (
-                              <Badge variant="outline" className="text-xs px-1.5 py-1 h-5 border-border/50">
-                                +{question.categories.length - 1}
-                              </Badge>
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Badge variant="outline" className="text-xs px-1.5 py-1 h-5 border-border/50 cursor-pointer hover:bg-accent/50 transition-colors">
+                                      +{question.categories.length - 1}
+                                    </Badge>
+                                  </TooltipTrigger>
+                                  <TooltipContent side="top" className="max-w-56">
+                                    <p className="text-xs font-medium mb-1">Additional Categories</p>
+                                    <div className="space-y-1">
+                                      {question.categories.slice(1).map((category, index) => (
+                                        <button
+                                          key={index}
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleCategoryClick(category);
+                                          }}
+                                          className="flex items-center gap-2 w-full text-left px-2 py-1 rounded hover:bg-accent/80 transition-colors"
+                                        >
+                                          <div className={`w-2 h-2 rounded-full ${getCategoryInfo(category)?.color}`} />
+                                          <span className="text-xs">{category}</span>
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
                             )}
                           </div>
                           {/* Target icon - commented out, can be re-enabled later */}
