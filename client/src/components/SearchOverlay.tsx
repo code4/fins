@@ -690,7 +690,7 @@ const SearchOverlay = memo(function SearchOverlay({
   searchValue = "",
   onSearchChange,
   onCategorySelect,
-  selectedCategory = null,
+  selectedCategory: externalSelectedCategory = null,
   onQuestionSelect,
   onClose
 }: SearchOverlayProps) {
@@ -750,18 +750,18 @@ const SearchOverlay = memo(function SearchOverlay({
 
   // Handle external category selection (from follow-up questions)
   useEffect(() => {
-    if (isOpen && selectedCategory) {
+    if (isOpen && externalSelectedCategory) {
       setMode('category');
-      setSelectedCategory(selectedCategory);
+      setSelectedCategory(externalSelectedCategory);
       setSelectedQuestion(null);
       setPlaceholderValues({});
       setEditingPlaceholder(null);
     }
-  }, [isOpen, selectedCategory]);
+  }, [isOpen, externalSelectedCategory]);
 
   // Reset to overview when opening and focus input
   useEffect(() => {
-    if (isOpen && !selectedCategory) {
+    if (isOpen && !externalSelectedCategory) {
       setMode('overview');
       setSelectedCategory(null);
       setSelectedQuestion(null);
